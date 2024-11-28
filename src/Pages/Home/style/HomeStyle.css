@@ -1,0 +1,203 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 200;
+    color-scheme: light dark;
+    margin: auto;
+    padding: auto;
+
+}
+
+/* Ensure background covers the entire screen */
+body.home-page-body{
+    margin: 205.750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    justify-content: flex-start;   
+    height: 100vh;             
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+       
+}
+
+/* Center content and ensure it adapts */
+.bodyCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;               /* Make it take full width */
+    max-width: 800px;           /* Limit max width */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 20px;        /* Space between sections */
+}
+
+/* Responsive search container */
+/* Container for search input and button */
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Wrapper for the input and button */
+  .input-wrapper {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 0.5px solid #ccc;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Search input styling */
+  .search-input {
+    flex-grow: 1;
+    padding: 15px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    border-radius: 25px 0 0 25px; /* Rounded left side */
+  }
+  /* Search icon styling */
+.search-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+  
+  /* Search button styling */
+  .search-button {
+    margin-right: 2px;
+    padding: 13px 20px;
+    background-color: rgb(63, 119, 205);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+@media (min-width: 1280px) {
+    .search-container{
+        width: 600px;
+    }
+}
+
+/* Adjust font sizes and layout for smaller screens */
+@media (min-width: 600px) {
+    .bodyCenter {
+        padding: 10px;
+    }
+
+    /* Reduce font size for smaller screens */
+    body, .search-input {
+        font-size: 1em;    /* Adjusts the font size */
+    }
+
+    .navbar {
+        flex-direction: column;  /* Stack navbar vertically on smaller screens */
+        gap: 1rem;
+        font-size: 0.9rem;       /* Reduce navbar font size */
+    }
+
+    .nav-links {
+        gap: 1rem;               /* Reduce spacing between links */
+    }
+
+    .search-container {
+        flex-direction: column;   /* Stack input and button vertically */
+        align-items: stretch;     /* Make them full width */
+    }
+
+    .search-input {
+        margin-right: 0;         /* Remove margin when stacked */
+        width: 100%;             /* Full width on mobile */
+    }
+
+    
+}
+
+
+/* NavBar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    
+}
+.SingIn{
+    margin-top:10px;
+    margin-left: 10px;
+    position: fixed;    
+    top: 0;          
+    left: 0;
+}
+.nav-links {
+    margin-top:10px;
+    margin-right: 10px;
+    position: fixed;    
+    top: 0;          
+    right: 0;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+/* Footer stays at the bottom */
+.footer {
+    position: fixed;    
+    bottom: 0;          
+    left: 0;
+    width: 100%;        
+    display: flex;      
+    justify-content: center;
+    align-items: center;
+    color: white;       
+    text-align: center;
+    font-size: 0.9rem;  
+    z-index: 1000;      
+    padding: 1rem 0;
+}
+
+/* Overall App container */
+.App {
+    position: relative;
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+/* Add more media queries for larger devices */
+@media (min-width: 768px) {
+    .navbar {
+        padding: 1.5rem 3rem;
+    }
+}
+
+a{
+    color:white;
+    text-decoration: none;
+}
+.logo{
+    font-size:40px;
+    color:rgb(11,123,255);
+}
+.sublogo{
+    margin-top: 5px;
+    color: gray;
+}
