@@ -15,7 +15,7 @@ const SearchPage: React.FC = () => {
 
   const { query } = useParams<{ query: string }>();
 
-  // Fetch results from the API
+
   const fetchResults = async (query: string) => {
     try {
       const response = await axios.get(
