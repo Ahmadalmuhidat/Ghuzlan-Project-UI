@@ -24,7 +24,7 @@ const SearchPage: React.FC = () => {
       setResults(response.data["organic_results"] || []);
     } catch (error) {
       console.error("Error fetching results:", error);
-      setResults([]); // Clear results on error
+      setResults([]); 
     }
   };
 
