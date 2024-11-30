@@ -55,29 +55,41 @@ const SearchPage: React.FC = () => {
         <SearchBar onSubmit={handleSearchSubmit} />
       </div>
 
-      {/* Wikipedia description */}
-      {searchQuery && <WikiDescription query={searchQuery} />}
+    {/* Wikipedia description */}
+{searchQuery && (
+  <div className="wikipedia-box">
+    <WikiDescription query={searchQuery} />
+  </div>
+)}
+
 
       {/* Search results */}
-      <div className="search-results">
-        {currentResults.length > 0 ? (
-          currentResults.map((result) => (
-            <div key={result["id"]} className="result-item">
-              <a
-                href={result["redirect_link"]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="result-link"
-              >
-                {result["title"]}
-              </a>
-              <p>{result["snippet"]}</p>
-            </div>
-          ))
-        ) : (
-          <p>No results found.</p>
-        )}
+<div className="search-results">
+  {currentResults.length > 0 ? (
+    currentResults.map((result) => (
+      <div key={result["id"]} className="result-item">
+        {/* Link above the title */}
+        <a
+          href={result["displayed_link"]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="result-link"
+        >
+          {result["displayed_link"]}
+        </a>
+        
+        {/* Title */}
+        <h3 className="result-title">{result["title"]}</h3>
+        
+        {/* Snippet */}
+        <p className="result-snippet">{result["snippet"]}</p>
       </div>
+    ))
+  ) : (
+    <p>No results found.</p>
+  )}
+</div>
+
 
       {/* Pagination */}
       <div className="pagination">

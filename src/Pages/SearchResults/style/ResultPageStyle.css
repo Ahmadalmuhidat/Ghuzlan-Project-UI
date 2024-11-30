@@ -1,116 +1,145 @@
 :root {
+    
+    --text-color: #e0e0e0; /* Light text color */
+    --link-color: #1a73e8; /* Google's blue for links */
+    --link-hover-color: #4285f4; /* Brighter blue on hover */
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
+    
 }
 
 /* Container for search page */
 .search-page {
-    max-width: 100%; /* Set full width for the search page */
-    margin-left: 0; /* Ensure the page starts from the left */
-    padding-left: 0;
-    padding-right: 1rem;
-    color-scheme: light dark;
-    padding: 16px 20px 0 112px; /* Consistent padding */
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-areas:
+        "search-bar search-bar"
+        "results wikipedia"; /* Define layout areas */
+    grid-template-columns: 2fr 1fr; /* Results take 2/3, Wikipedia 1/3 */
+    grid-gap: 20px; /* Add space between grid items */
+    max-width: 100%;
+    margin: 0 auto; /* Center the grid horizontally */
+    padding: 16px 20px 0 112px;
+    background-color: var(--background-color); /* Light-dark background */
+    color: var(--text-color); /* Default text color */
 }
 
-/* Left-aligned search bar container - Same padding as result containers */
+/* Search bar at the top center */
 .search-bar-container {
+    grid-area: search-bar; /* Place in the search-bar grid area */
     display: flex;
-    justify-content: flex-start; /* Align to the left */
-    align-items: center; /* Vertically center within the container */
-    margin-top: 10px; 
-    position: relative;
-    width: auto;
-}
-
-/* Search header styling */
-.search-header {
+    justify-content: center; /* Center the search bar horizontally */
+    align-items: center; /* Center the search bar vertically */
     margin-bottom: 20px;
-    text-align: left;
-    border-bottom: 1px solid #ebebeb;
-    padding-bottom: 10px;
-    padding-left: 0; /* Make sure the header starts from the left */
+    width: 100%;
 }
 
-.search-header h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    font-weight: normal;
-    color: white;
-}
-
-/* Result count styling */
-.search-header p {
-    font-size: 0.9rem;
-    color: white;
-}
-
-/* Styling for search results */
+/* Left-aligned search results container */
 .search-results {
-    margin-bottom: 20px;
-    padding-left: 0; /* Make sure the results start from the left */
+    grid-area: results; /* Place in the results grid area */
+    margin-right: 20px; /* Add spacing to the right */
 }
 
 /* Each result item - Container shape */
 .result-item {
-    padding: 10px; /* Add padding inside each result container */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border: 0px solid #ebebeb; /* Light border around each result */
-    transition: transform 0.3s ease; /* Smooth hover effect */
-    width: 750px;
-    padding-left: 10px; /* Same padding as search bar */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--result-background-color); /* Slightly lighter dark */
+    transition: transform 0.3s ease;
+    width: 70%; /* Ensure results take full width of the container */
+    
 }
 
-/* Hover effect for each result container */
-.result-item:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
+
 
 /* Title of result */
 .result-item h3 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 20px;
     line-height: 1.75rem;
     font-weight: 500;
-    color: rgba(34, 139, 230, 0.8);
-    max-width: calc(100% - 30px);
+    color: var(--link-color); /* Google's blue for titles */
+    height: 28px;
 }
 
 /* Description of result */
 .result-item p {
     margin-top: 1px;
-    font-size: 18px;
-    color: white; /* Google's description color */
+    font-size: 14px;
+    color: rgb(var(--neutral-focus) / var(--tw-text-opacity));
 }
 
 /* URL link for result */
 .result-link {
-    font-size: 0.9rem;
-    color: gray; /* Google's green URL color */
+    font-size: 14px;
+    color: gray;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-/* Hover effect for result link */
 .result-link:hover {
+    color: var(--link-hover-color); /* Brighter blue on hover */
     text-decoration: underline;
 }
+
+/* Wikipedia Box Style */
+.wikipedia-box {
+    grid-area: wikipedia; /* Place in the wikipedia grid area */
+    position: sticky; /* Keep the box visible when scrolling */
+    top: 20px; /* Stick to the top of the viewport */
+    background-color: var(--result-background-color); /* Slightly lighter dark */
+    border-radius: 8px;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    color: var(--text-color); /* Adapt text color for dark mode */
+}
+
+/* Title Style */
+.wikipedia-box .wikipedia-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(var(--neutral-focus) / var(--tw-text-opacity));
+    margin-bottom: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wikipedia-box .wikipedia-title:hover {
+    color: var(--link-hover-color); /* Brighter blue on hover */
+    text-decoration: underline;
+}
+
+.wikipedia-box .wikipedia-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(var(--neutral-focus) / var(--tw-text-opacity));
+    display: -webkit-box; /* Create a box layout */
+    -webkit-line-clamp: 3; /* Limit to 3 lines (approximate 200 characters) */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add "..." at the end */
+}
+
 
 /* Pagination styling */
 .pagination {
     display: flex;
-    justify-content: flex-start; /* Align pagination to the left */
+    justify-content: flex-start;
     margin-top: 20px;
 }
 
 .pagination button {
     padding: 8px 12px;
     margin: 0 3px;
-    border: 1px solid #dadce0;
-    background-color: white;
-    color: #1a73e8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: var(--result-background-color);
+    color: var(--text-color);
     font-size: 0.9rem;
     border-radius: 4px;
     cursor: pointer;
@@ -118,25 +147,29 @@
 }
 
 .pagination button.active {
-    background-color: #1a73e8;
-    color: white;
+    background-color: var(--link-color);
+    color: #fff;
 }
 
 .pagination button:hover {
-    background-color: #f1f3f4;
-    color: #1a73e8;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--link-hover-color);
 }
 
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
     .search-page {
-        max-width: 100%;
-        padding-left: 0; /* Ensure mobile version also starts from the left */
+        grid-template-areas:
+            "search-bar"
+            "wikipedia"
+            "results"; /* Stack vertically */
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-gap: 20px;
     }
 
-    /* Mobile-specific adjustments for result item */
-    .result-item {
-        padding: 15px; /* Slightly less padding on mobile */
-        margin-bottom: 30px; /* Less margin between items */
+    .search-bar-container,
+    .search-results,
+    .wikipedia-box {
+        width: 100%; /* Full width for all sections */
     }
 }

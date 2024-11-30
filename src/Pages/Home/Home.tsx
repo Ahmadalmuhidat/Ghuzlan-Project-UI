@@ -30,7 +30,7 @@ const Home: React.FC = () => {
       <NavBar />
       <div className="bodyCenter">
         <Logo text="QueryHive" fontSize="3rem" color="white" />
-        <div className="sublogo">Independent and Open Search</div>
+        <div className="sublogo">Independent and Open Source search engine</div>
       </div>
       {/* Pass the handler to SearchBar */}
       <SearchBar onSubmit={handleSearchSubmit} />
