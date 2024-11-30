@@ -79,7 +79,8 @@
   }
   
   .pagination button {
-    margin: 0;
+    margin-top: 10;
+    margin-bottom: 10px;
     padding: 8px 16px;
     border: 1px solid #444;
     border-radius: 4px;
@@ -99,4 +100,54 @@
     background-color: #333; /* Slightly lighter on hover */
     box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
   }
+  .resultbar {
+    left: 0;
+    grid-area: resultbar; /* Define the result bar as a grid area */
+    display: flex;
+    justify-content: center; /* Center the navigation links horizontally */
+    align-items: center;
+    padding: 10px 0; /* Add padding for spacing */
+    background-color: var(--result-background-color); /* Match the theme */
+    margin-bottom: 20px; /* Space below the result bar */
+}
+
+.result-links {
+    list-style: none; /* Remove bullet points */
+    display: flex;
+    gap: 20px; /* Space between links */
+    margin: 0;
+    padding: 0;
+}
+
+.result-links li a {
+    text-decoration: none; /* Remove underline */
+    color: var(--link-color); /* Link color */
+    font-size: 16px; /* Adjust font size */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.result-links li a:hover {
+    color: var(--link-hover-color); /* Hover effect */
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .search-page {
+        grid-template-areas:
+            "search-bar"
+            "resultbar"
+            "wikipedia"
+            "results"; /* Stack vertically */
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-gap: 20px;
+    }
+
+    .search-bar-container,
+    .resultbar,
+    .search-results,
+    .wikipedia-box {
+        width: 100%; /* Full width for all sections */
+    }
+}
+
   

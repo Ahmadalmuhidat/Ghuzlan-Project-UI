@@ -4,7 +4,7 @@ import Logo from './components/logo';
 import SearchBar from './components/SearchBar';
 import NavBar from './components/NaveBar';
 import Footer from './components/Footer';
-import "./style/HomeStyle.css"; // Import Home styles
+import "./style/HomeStyle.css"; 
 import axios from 'axios';
 
 const Home: React.FC = () => {

@@ -61,6 +61,7 @@
     font-weight: 500;
     color: var(--link-color); /* Google's blue for titles */
     height: 28px;
+    
 }
 
 /* Description of result */
@@ -127,40 +128,12 @@
 }
 
 
-/* Pagination styling */
-.pagination {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
-}
-
-.pagination button {
-    padding: 8px 12px;
-    margin: 0 3px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: var(--result-background-color);
-    color: var(--text-color);
-    font-size: 0.9rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.pagination button.active {
-    background-color: var(--link-color);
-    color: #fff;
-}
-
-.pagination button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: var(--link-hover-color);
-}
-
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
     .search-page {
         grid-template-areas:
             "search-bar"
+            "resultbar"
             "wikipedia"
             "results"; /* Stack vertically */
         grid-template-columns: 1fr; /* Single column layout */
@@ -168,8 +141,17 @@
     }
 
     .search-bar-container,
+    .resultbar,
     .search-results,
+    .result-item,
     .wikipedia-box {
         width: 100%; /* Full width for all sections */
     }
 }
+
+
+
+
+    
+
+
