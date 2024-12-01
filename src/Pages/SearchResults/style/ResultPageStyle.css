@@ -1,5 +1,4 @@
 :root {
-    
     --text-color: #e0e0e0; /* Light text color */
     --link-color: #1a73e8; /* Google's blue for links */
     --link-hover-color: #4285f4; /* Brighter blue on hover */
@@ -7,7 +6,6 @@
     padding: 0;
     height: 100%;
     width: 100%;
-    
 }
 
 /* Container for search page */
@@ -25,6 +23,7 @@
     color: var(--text-color); /* Default text color */
 }
 
+
 /* Search bar at the top center */
 .search-bar-container {
     grid-area: search-bar; /* Place in the search-bar grid area */
@@ -33,6 +32,7 @@
     align-items: center; /* Center the search bar vertically */
     margin-bottom: 20px;
     width: 100%;
+    position: relative;
 }
 
 /* Left-aligned search results container */
@@ -48,10 +48,7 @@
     background-color: var(--result-background-color); /* Slightly lighter dark */
     transition: transform 0.3s ease;
     width: 70%; /* Ensure results take full width of the container */
-    
 }
-
-
 
 /* Title of result */
 .result-item h3 {
@@ -61,7 +58,6 @@
     font-weight: 500;
     color: var(--link-color); /* Google's blue for titles */
     height: 28px;
-    
 }
 
 /* Description of result */
@@ -82,6 +78,18 @@
 .result-link:hover {
     color: var(--link-hover-color); /* Brighter blue on hover */
     text-decoration: underline;
+}
+
+/* Pagination styling */
+.pagination {
+    display: flex;
+    justify-content: center; /* Center-align the pagination controls */
+    margin-top: 20px; /* Add spacing above the pagination */
+    margin-bottom: 20px; /* Add spacing below the pagination */
+    width: 100%; /* Ensure it spans the full width of the container */
+    padding: 10px 0; /* Add padding for better spacing */
+    background-color: var(--background-color); /* Optional: match page background */
+    border-top: 1px solid var(--text-color); /* Optional: add a top border for separation */
 }
 
 /* Wikipedia Box Style */
@@ -127,7 +135,6 @@
     text-overflow: ellipsis; /* Add "..." at the end */
 }
 
-
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
     .search-page {
@@ -148,10 +155,3 @@
         width: 100%; /* Full width for all sections */
     }
 }
-
-
-
-
-    
-
-

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from './components/logo';
 import SearchBar from './components/SearchBar';
 import NavBar from './components/NaveBar';
 import Footer from './components/Footer';
 import "./style/HomeStyle.css"; 
-import axios from 'axios';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     // Apply home-page-body class to the body element when Home page is loaded
     document.body.classList.add('home-page-body');
@@ -19,10 +19,13 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  // Handle search submit for Home page (could be a no-op or route to another page)
+  // Handle search submit for Home page
   const handleSearchSubmit = (query: string) => {
+    if (!query.trim()) {
+      console.log("Search query is empty. Staying on the same page.");
+      return; // Do nothing if the query is empty
+    }
     navigate("/search/" + query);
-    
   };
 
   return (

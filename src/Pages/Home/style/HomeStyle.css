@@ -5,21 +5,18 @@
     color-scheme: light dark;
     margin: auto;
     padding: auto;
-
 }
 
 /* Ensure background covers the entire screen */
-body.home-page-body{
+body.home-page-body {
     margin: 205.750px;
     display: flex;
     flex-direction: column;
-    align-items: center;       
-    justify-content: flex-start;   
-    height: 100vh;             
-    background-position: center; 
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-position: center;
     background-repeat: no-repeat;
-    
-       
 }
 
 /* Center content and ensure it adapts */
@@ -28,36 +25,35 @@ body.home-page-body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;               /* Make it take full width */
-    max-width: 800px;           /* Limit max width */
+    width: 100%; /* Make it take full width */
+    max-width: 800px; /* Limit max width */
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
-    margin-bottom: 20px;        /* Space between sections */
+    margin-bottom: 20px; /* Space between sections */
 }
 
 /* Responsive search container */
-/* Container for search input and button */
 .search-container {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-  }
-  
-  /* Wrapper for the input and button */
-  .input-wrapper {
+}
+
+/* Wrapper for the input and button */
+.input-wrapper {
     padding-left: 10px;
     display: flex;
     align-items: center;
     width: 100%;
     border: 0.5px solid #ccc;
-    border-radius: 25px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
-  }
-  
-  /* Search input styling */
-  .search-input {
+}
+
+/* Search input styling */
+.search-input {
     flex-grow: 1;
     padding: 15px;
     padding-left: 10px;
@@ -65,35 +61,35 @@ body.home-page-body{
     outline: none;
     font-size: 1.2rem;
     border-radius: 25px 0 0 25px; /* Rounded left side */
-  }
-  /* Search icon styling */
+}
+
+/* Search icon styling */
 .search-icon {
     position: absolute;
     left: 10px;
     font-size: 1.2rem;
     color: #ccc;
-  }
-  
-  /* Search button styling */
-  .search-button {
+}
+
+/* Search button styling */
+.search-button {
     margin-right: 2px;
     padding: 13px 20px;
     background-color: rgb(11, 123, 255);
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 50px;
+    border-radius: 10px;
     font-size: 1rem;
     transition: background-color 0.3s;
+}
 
-  }
-  
-  .search-button:hover {
+.search-button:hover {
     background-color: #0056b3;
-  }
-  
+}
+
 @media (min-width: 1280px) {
-    .search-container{
+    .search-container {
         width: 600px;
     }
 }
@@ -105,74 +101,208 @@ body.home-page-body{
     }
 
     /* Reduce font size for smaller screens */
-    body, .search-input {
-        font-size: 1em;    /* Adjusts the font size */
+    body,
+    .search-input {
+        font-size: 1em; /* Adjusts the font size */
     }
 
     .navbar {
-        flex-direction: column;  /* Stack navbar vertically on smaller screens */
+        flex-direction: column; /* Stack navbar vertically on smaller screens */
         gap: 1rem;
-        font-size: 0.9rem;       /* Reduce navbar font size */
+        font-size: 0.9rem; /* Reduce navbar font size */
     }
 
     .nav-links {
-        gap: 1rem;               /* Reduce spacing between links */
+        gap: 1rem; /* Reduce spacing between links */
     }
 
     .search-container {
-        flex-direction: column;   /* Stack input and button vertically */
-        align-items: stretch;     /* Make them full width */
+        flex-direction: column; /* Stack input and button vertically */
+        align-items: stretch; /* Make them full width */
     }
 
     .search-input {
-        margin-right: 0;         /* Remove margin when stacked */
-        width: 100%;             /* Full width on mobile */
+        margin-right: 0; /* Remove margin when stacked */
+        width: 100%; /* Full width on mobile */
     }
-
-    
 }
-
 
 /* NavBar styling */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the music bar */
     align-items: center;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    
+    height: 80px; /* Set a consistent height */
+    color: white; /* Navbar text color */
 }
-.SingIn{
-    margin-top:10px;
-    margin-left: 10px;
-    position: fixed;    
-    top: 0;          
-    left: 0;
+
+/* Sign In link at the top-left */
+.SingIn {
+    position: absolute;
+    top: 10px;
+    left: 20px;
 }
+
+/* Navigation links (History and About) at the top-right */
 .nav-links {
-    margin-top:10px;
-    margin-right: 10px;
-    position: fixed;    
-    top: 0;          
-    right: 0;
+    position: absolute;
+    top: 10px;
+    right: 20px;
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 20px; /* Space between links */
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Music bar in the top-middle of the page */
+.music-bar {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    position: absolute;
+    top: 10px; /* Position it at the top of the page */
+    left: 50%; /* Align the center of the page */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    gap: 20px; /* Space between the music search and song controller */
+    
+}
+
+/* Music search bar styling */
+.music-search {
+    position: relative; /* Set relative positioning to contain the absolute child */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10x;
+    width: 100%; /* Ensure it has a defined width */
+    height: 30px;
+    max-width: 350px; /* Set a consistent maximum width */
+}
+
+.music-search-results {
+    position: absolute; /* Position relative to .music-search */
+    top: 100%; /* Place it directly below the .music-search */
+    left: 0; /* Align to the left edge of the parent */
+    width: 78%; /* Match the width of the .music-search */
+    height: 30px;
+    background-color: #333; /* Background for the results */
+    border-radius: 10px; /* Rounded corners */
+    color: white;
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above other elements */
+    margin-top: 7px;
+}
+
+.music-search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.music-search-results li {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #555; /* Add a separator between items */
+}
+
+.music-search-results li:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+.music-search-results li:hover {
+    background-color: #444; /* Highlight on hover */
+}
+
+
+.music-search input {
+    padding: 8px;
+    font-size: 14px;
+    width: 350px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    color: white;
+    background-color: #222;
+}
+
+.music-search input::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+.music-search button {
+    top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: rgb(11, 123, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.music-search button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for the Spotify player wrapper */
+.spotify-player-wrapper {
+    top:10px;
+    width: 100%; /* Make the width fully responsive */
+    max-width: 100%; /* Constrain to the parent's width */
+    height: 80px;
+    border: 2px solid #555; /* Optional border around the player */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+    background-color: #222; /* Background color */
+    display: flex; /* Ensure proper alignment */
+    align-items: center; /* Vertically align content */
+    justify-content: center; /* Center content horizontally */
+  }
+  
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto; /* Allow navbar height to adjust */
+        padding: 20px;
+    }
+
+    .music-bar {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        gap: 15px; /* Adjust spacing for stacked layout */
+        transform: none; /* Remove centering transform */
+        left: auto; /* Reset positioning */
+    }
+
+    .music-search input {
+        width: 100%; /* Full width on smaller screens */
+    }
 }
 
 /* Footer stays at the bottom */
 .footer {
-    position: fixed;    
-    bottom: 0;          
+    position: fixed;
+    bottom: 0;
     left: 0;
-    width: 100%;        
-    display: flex;      
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    color: white;       
+    color: white;
     text-align: center;
-    font-size: 0.9rem;  
-    z-index: 1000;      
+    font-size: 0.9rem;
+    z-index: 1000;
     padding: 1rem 0;
 }
 
@@ -189,15 +319,17 @@ body.home-page-body{
     }
 }
 
-a{
-    color:white;
+a {
+    color: white;
     text-decoration: none;
 }
-.logo{
-    font-size:40px;
-    color:rgb(11,123,255);
+
+.logo {
+    font-size: 40px;
+    color: rgb(11, 123, 255);
 }
-.sublogo{
+
+.sublogo {
     margin-top: 5px;
     color: gray;
 }

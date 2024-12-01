@@ -18,6 +18,7 @@ const SearchPage: React.FC = () => {
 
   // Fetch results from the API
   const fetchResults = async (query: string) => {
+    if (!query.trim()) return; // Do nothing if the query is empty
     try {
       const response = await axios.get(
         `http://localhost:3000/search?q=${query}`
@@ -34,7 +35,6 @@ const SearchPage: React.FC = () => {
     if (query) {
       setSearchQuery(query);
       fetchResults(query);
-      
     }
   }, [query]);
 
@@ -51,12 +51,16 @@ const SearchPage: React.FC = () => {
 
   // Handle new search submission
   const handleSearchSubmit = (query: string) => {
+    if (!query.trim()) {
+      console.log("Search query is empty. Staying on the same page.");
+      return; // Do nothing if the query is empty
+    }
     setSearchQuery(query);
     navigate(`/search/${query}`);
     fetchResults(query);
   };
 
-  // Handle tab change 
+  // Handle tab change
   const handleTabChange = (tab: string) => {
     setSelectedTab(tab);
     const route = tab === "Images" ? `/image_results/${searchQuery}` : `/search/${searchQuery}`;
@@ -64,7 +68,7 @@ const SearchPage: React.FC = () => {
     if (tab === "Images") {
       console.log("Switching to Images tab...");
     } else {
-      fetchResults(searchQuery); // Fetch all results if switching to "All"
+      fetchResults(searchQuery);
     }
   };
 
@@ -74,6 +78,8 @@ const SearchPage: React.FC = () => {
       <div className="search-bar-container">
         <SearchBar onSubmit={handleSearchSubmit} />
       </div>
+      <div className="resultbar"> <ResultBar query={searchQuery} onTabChange={handleTabChange} /></div>
+      
 
       {/* Wikipedia description */}
       {searchQuery && (

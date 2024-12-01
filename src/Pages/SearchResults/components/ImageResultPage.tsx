@@ -16,6 +16,7 @@ const ImageResultPage: React.FC = () => {
   const navigate = useNavigate();
 
   const fetchImageResults = async (query: string) => {
+    if (!query.trim()) return; // Do nothing if the query is empty
     try {
       const response = await axios.get(
         `http://localhost:3000/search_images?q=${query}`
@@ -44,6 +45,10 @@ const ImageResultPage: React.FC = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const handleSearchSubmit = (query: string) => {
+    if (!query.trim()) {
+      console.log("Search query is empty. Staying on the same page.");
+      return; // Do nothing if the query is empty
+    }
     setSearchQuery(query);
     navigate(`/image_results/${query}`); // Navigate to the new route
     fetchImageResults(query); // Fetch the results for the new query

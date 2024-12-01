@@ -17,7 +17,7 @@ const ResultPage: React.FC = () => {
     <div>
       <NavBar />
       {/* Pass the query and tab change handler to ResultBar */}
-      <ResultBar query={query || ""} onTabChange={handleTabChange} />
+      {/* <ResultBar query={query || ""} onTabChange={handleTabChange} /> */}
       <SearchPage />
     </div>
   );
