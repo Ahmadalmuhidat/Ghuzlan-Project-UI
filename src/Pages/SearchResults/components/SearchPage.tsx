@@ -3,20 +3,22 @@ import "../style/ResultPageStyle.css";
 import SearchBar from "../../Home/components/SearchBar";
 import WikiDescription from "./WikiDescription";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
-
+import { useParams, useNavigate } from "react-router-dom";
+import ResultBar from "./ResultBar";
 
 const SearchPage: React.FC = () => {
   const [results, setResults] = useState<[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const resultsPerPage = 20;
+  const [selectedTab, setSelectedTab] = useState<string>("All");
+  const resultsPerPage = 20; // Number of results displayed per page
 
   const { query } = useParams<{ query: string }>();
+  const navigate = useNavigate();
 
-
+  // Fetch results from the API
   const fetchResults = async (query: string) => {
+    if (!query.trim()) return; // Do nothing if the query is empty
     try {
       const response = await axios.get(
         `http://localhost:3000/search?q=${query}`
@@ -24,28 +26,50 @@ const SearchPage: React.FC = () => {
       setResults(response.data["organic_results"] || []);
     } catch (error) {
       console.error("Error fetching results:", error);
-      setResults([]); // Clear results on error
+      setResults([]);
     }
   };
 
+  // Fetch results on component mount or query change
   useEffect(() => {
     if (query) {
-      console.log("Query from useParams:", query);
       setSearchQuery(query);
       fetchResults(query);
     }
   }, [query]);
 
+  // Calculate results for the current page
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
   const currentResults = results.slice(indexOfFirstResult, indexOfLastResult);
   const totalPages = Math.ceil(results.length / resultsPerPage);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  // Handle page change
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
+  // Handle new search submission
   const handleSearchSubmit = (query: string) => {
+    if (!query.trim()) {
+      console.log("Search query is empty. Staying on the same page.");
+      return; // Do nothing if the query is empty
+    }
     setSearchQuery(query);
+    navigate(`/search/${query}`);
     fetchResults(query);
+  };
+
+  // Handle tab change
+  const handleTabChange = (tab: string) => {
+    setSelectedTab(tab);
+    const route = tab === "Images" ? `/image_results/${searchQuery}` : `/search/${searchQuery}`;
+    navigate(route);
+    if (tab === "Images") {
+      console.log("Switching to Images tab...");
+    } else {
+      fetchResults(searchQuery);
+    }
   };
 
   return (
@@ -54,24 +78,36 @@ const SearchPage: React.FC = () => {
       <div className="search-bar-container">
         <SearchBar onSubmit={handleSearchSubmit} />
       </div>
+      <div className="resultbar"> <ResultBar query={searchQuery} onTabChange={handleTabChange} /></div>
+      
 
       {/* Wikipedia description */}
-      {searchQuery && <WikiDescription query={searchQuery} />}
+      {searchQuery && (
+        <div className="wikipedia-box">
+          <WikiDescription query={searchQuery} />
+        </div>
+      )}
 
       {/* Search results */}
       <div className="search-results">
         {currentResults.length > 0 ? (
-          currentResults.map((result) => (
-            <div key={result["id"]} className="result-item">
+          currentResults.map((result, index) => (
+            <div key={index} className="result-item">
+              {/* Link above the title */}
               <a
-                href={result["redirect_link"]}
+                href={result["displayed_link"]}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="result-link"
               >
-                {result["title"]}
+                {result["displayed_link"]}
               </a>
-              <p>{result["snippet"]}</p>
+
+              {/* Title */}
+              <h3 className="result-title">{result["title"]}</h3>
+
+              {/* Snippet */}
+              <p className="result-snippet">{result["snippet"]}</p>
             </div>
           ))
         ) : (

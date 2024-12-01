@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 interface WikiDescriptionProps {
-  query: string;  // The search query passed as a prop
+  query: string; // The search query passed as a prop
 }
 
 const WikiDescription: React.FC<WikiDescriptionProps> = ({ query }) => {
   const [description, setDescription] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [link, setLink] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!query) return;  // Don't fetch if there's no query
+    if (!query) return; // Don't fetch if there's no query
 
     const fetchDescription = async () => {
       try {
@@ -25,7 +26,8 @@ const WikiDescription: React.FC<WikiDescriptionProps> = ({ query }) => {
         if (pageId === '-1') {
           setDescription('No description available for this term.');
         } else {
-          setDescription(page[pageId].extract);  // Set the description
+          setDescription(page[pageId].extract); // Set the description
+          setLink(`https://en.wikipedia.org/wiki/${query}`); // Generate the Wikipedia link
         }
       } catch (err) {
         setError('Failed to fetch description from Wikipedia.');
@@ -36,11 +38,35 @@ const WikiDescription: React.FC<WikiDescriptionProps> = ({ query }) => {
   }, [query]);
 
   return (
-    <div className="wiki-description">
-      <h2>About "{query}" from Wikipedia</h2>
-      {error && <p>{error}</p>}
-      {description ? <p>{description}</p> : <p>Loading...</p>}
-    </div>
+    <div className="wikipedia-box">
+  {error && <p className="wikipedia-description">{error}</p>}
+  {!error && link && (
+    <>
+      {/* Title */}
+      <h2 className="wikipedia-title">{query}</h2>
+
+      {/* Description */}
+      <p className="wikipedia-description">
+        {description ? description : 'Loading...'}
+      </p>
+
+      {/* Source */}
+      <p className="wikipedia-source">
+        source:{" "}
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="wikipedia-link"
+        >
+          Wikipedia
+        </a>
+      </p>
+    </>
+  )}
+</div>
+
+
   );
 };
 
